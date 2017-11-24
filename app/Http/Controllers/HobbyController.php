@@ -3,27 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Hobbies\HobbyComparator;
-use Illuminate\Http\Request;
+use App\Http\Requests\CompareFormRequest;
+
 use Validator;
 
 class HobbyController extends Controller
 {
-  public function compare(Request $request)
+  public function compare(CompareFormRequest $request)
   {
 
-    $messages = [
-      'email.required' => 'Zadajte emailovú adresu !',
-    ];
-    $validator = Validator::make($request->all(), [
-      'email' => 'bail|required',
-    ], $messages);
 
-
-    if ($validator->fails()) {
-      return redirect('hobbies/compare')
-      ->withErrors($validator)
-      ->withInput();
-    }
 
     $list = HobbyComparator::compare($request->email);
     if($list == null)

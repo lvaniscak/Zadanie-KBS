@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hobbies\Hobby;
-use Illuminate\Http\Request;
+use App\Http\Requests\RegistrationFormRequest;
 use App\Users\User;
 use Validator;
 
@@ -16,17 +16,8 @@ class UserController extends Controller
 
 
 
-  public function store(Request $request)
+  public function store(RegistrationFormRequest $request)
   {
-      $messages = array_merge((new User())->getValidationMessages(),(new Hobby())->getValidationMessages() );
-      $rules =  array_merge((new User())->getValidationRules(),(new Hobby())->getValidationRules() );
-    $validator = Validator::make($request->all(),$rules , $messages);
-
-    if ($validator->fails()) {
-      return redirect('user/create')
-      ->withErrors($validator)
-      ->withInput();
-    }
       $user = User::create(['name' => $request->name, 'email' => $request->email]);
 
      $data = $request->except(['name', 'email', '_token']);
