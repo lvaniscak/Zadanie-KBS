@@ -37,14 +37,15 @@ class HobbyController extends Controller
 
     $users = User::where('id', '!=', $expected_user->id)->get();
     $list = array();
-    $values  = array('swimming','cycling', 'running', 'tourism', 'climbing');
+
 
     foreach ($users as $user) {
-      $hobbies = new Hobby; 
-      $hobbies = $hobbies->getHobbies($user->id);
+
+      $hobbies = $user->hobbies;
+
       $match = 0;
 
-      foreach ($values as  $value) {
+      foreach ($my_hobbies->getFillable() as  $value) {
         $match = $match + abs($hobbies->$value - $my_hobbies->$value) * 20;
       }
       $match = 100 - $match/5 ;

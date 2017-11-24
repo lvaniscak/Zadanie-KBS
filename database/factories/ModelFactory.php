@@ -13,7 +13,6 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
 
     return [
         'name' => $faker->name,
@@ -23,13 +22,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 
 $factory->define(App\Hobby::class, function(Faker\Generator $faker) {
-    return [
 
-        'swimming' => $faker->boolean,
-        'cycling' => $faker->boolean,
-        'running' => $faker->boolean,
-        'tourism' => $faker->boolean,
-        'climbing' => $faker->boolean,
+    $result = array();
+    foreach ((new \App\Hobby())->getFillable() as $hobby)
+        $result[$hobby] = $faker->boolean;
 
-    ];
+    return $result;
 });
