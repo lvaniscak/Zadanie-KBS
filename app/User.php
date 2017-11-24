@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
   protected $fillable = ['name','email'];
+  public $timestamps = false;
 
-  public function getUser($email)
-  {
-    return User::select('id')->where('email', $email)->first();
-  }
+    public function hobbies()
+    {
+        return $this->hasOne('App\Hobby');
+    }
+
+
 }

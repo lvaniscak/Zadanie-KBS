@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hobby extends Model
 {
       protected $fillable = ['swimming','running','cycling','tourism','climbing'];
+      public $timestamps = false;
 
       public function getHobbies($user_id)
       {
