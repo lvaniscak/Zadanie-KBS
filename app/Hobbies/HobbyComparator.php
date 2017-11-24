@@ -1,8 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Hobbies;
 
 
+
+
+use App\Users\User;
 
 class HobbyComparator
 {

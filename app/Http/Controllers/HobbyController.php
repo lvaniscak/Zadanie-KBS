@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\HobbyComparator;
+use App\Hobbies\HobbyComparator;
 use Illuminate\Http\Request;
 use Validator;
 

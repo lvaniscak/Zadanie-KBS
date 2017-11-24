@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Hobby;
+use App\Hobbies\Hobby;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\User;
+use App\Users\User;
 use Validator;
 
 class UserController extends Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Users;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,7 +30,7 @@ class User extends Model
 
     public function hobbies()
     {
-        return $this->hasOne(Hobby::class);
+        return $this->hasOne(\App\Hobbies\Hobby::class);
     }
 
 

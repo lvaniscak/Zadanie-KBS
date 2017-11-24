@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Hobbies;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,6 +45,6 @@ class Hobby extends Model
       }
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Users\User::class);
     }
 }

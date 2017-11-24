@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Users\User::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
@@ -21,10 +21,10 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 
-$factory->define(App\Hobby::class, function(Faker\Generator $faker) {
+$factory->define(App\Hobbies\Hobby::class, function(Faker\Generator $faker) {
 
     $result = array();
-    foreach ((new \App\Hobby())->getFillable() as $hobby)
+    foreach ((new \App\Hobbies\Hobby())->getFillable() as $hobby)
         $result[$hobby] = $faker->boolean;
 
     return $result;
