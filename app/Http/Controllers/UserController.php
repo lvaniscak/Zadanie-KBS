@@ -35,4 +35,10 @@ class UserController extends Controller
 
       return view('registrationDone');
     }
-  }
+
+
+    public function showAll()
+    {
+        return view('usersList')->with('users',User::all());
+    }
+}

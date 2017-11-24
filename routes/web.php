@@ -12,6 +12,7 @@
 */
 
 Route::get('user/create','UserController@create' );
+Route::get('user/list','UserController@showAll' );
 Route::post('user', 'UserController@store');
 
 Route::get('hobbies/compare','HobbyController@index');
