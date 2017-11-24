@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\HobbyComparator;
 use Illuminate\Http\Request;
-use App\User;
-use App\Hobby;
 use Validator;
 
 class HobbyController extends Controller
@@ -18,7 +17,7 @@ class HobbyController extends Controller
     $validator = Validator::make($request->all(), [
       'email' => 'bail|required',
     ], $messages);
-    $expected_user = User::where('email', $request->email)->first();
+
 
     if ($validator->fails()) {
       return redirect('hobbies/compare')
@@ -26,33 +25,14 @@ class HobbyController extends Controller
       ->withInput();
     }
 
-    if($expected_user == null)
+    $list = HobbyComparator::compare($request->email);
+    if($list == null)
     {
       return redirect('hobbies/compare')
       ->withErrors(['email' => 'Takýto email nie je registrovaný!'])
       ->withInput();
     }
 
-    $my_hobbies = Hobby::where('user_id','=',$expected_user->id)->first();
-
-    $users = User::where('id', '!=', $expected_user->id)->get();
-    $list = array();
-
-
-    foreach ($users as $user) {
-
-      $hobbies = $user->hobbies;
-
-      $match = 0;
-
-      foreach ($my_hobbies->getFillable() as  $value) {
-        $match = $match + abs($hobbies->$value - $my_hobbies->$value) * 20;
-      }
-      $match = 100 - $match/5 ;
-      $list [$user->name] = $match;
-
-
-    }
 
     return view('compareList')->with(array('list' => $list,
     'email' => $request->email));
