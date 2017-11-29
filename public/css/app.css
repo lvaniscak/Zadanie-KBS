@@ -17,7 +17,13 @@ html {
   background-color:#D7CEC7;
 }
 
+em{
+  color:#76323F;
+}
 
+h3{
+  color:#565656;
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -78,4 +84,29 @@ th {
 
 .inputs {
   border-radius:5px;
+}
+
+.button{
+  color:#565656;
+  border-radius:25px;
+  height:35px;
+  padding:6px;
+  font-weight:bold;
+  font-size:15px;
+  background-color:#C09F80;
+}
+
+.heading{
+  color:#76323F;
+  margin-top:50px;
+}
+
+.registration-button {
+  color: #565656;
+  border-radius: 25px;
+  height: 55px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #C09F80;
 }

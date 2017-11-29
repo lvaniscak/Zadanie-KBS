@@ -4,25 +4,7 @@
 
 
 
-<style>
-.button{
-  color:#565656;
-  border-radius:25px;
-  height:35px;
-  padding:6px;
-  font-weight:bold;
-  font-size:15px;
-  background-color:#C09F80;
-}
 
-.heading{
-  color:#76323F;
-  margin-top:50px;
-}
-
-}
-
-</style>
 @section('content')
   {{ Form::open(array('url' => 'hobbies')) }}
   <h1 class="heading">Porovnávač záľub</h1>

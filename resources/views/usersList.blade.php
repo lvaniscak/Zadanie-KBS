@@ -1,14 +1,7 @@
 @extends('layouts.master')
 
 @section('title', 'Zoznam uzivatelov')
-<style>
 
-    .heading{
-        color:#76323F;
-        margin-top:50px;
-    }
-
-</style>
 
 @section('content')
 

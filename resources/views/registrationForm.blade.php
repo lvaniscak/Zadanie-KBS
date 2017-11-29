@@ -3,11 +3,7 @@
 @section('title', 'Registrácia')
 
 
-<style>
-.heading{
-  color:#76323F;
-}
-</style>
+
 
 @section('content')
   {{ Form::open(array('url' => 'user')) }}
@@ -28,12 +24,12 @@
       <div class="errors">{{$errors->first('email')}}
       </div>
     @endif
-    {{Form::label('email', 'E-mail:',array('style' =>'font-weight:bold;' ))}}
-    {{Form::email('email',null,array('style' => 'border-radius:5px'))}}
+    {{Form::label('email', 'E-mail:',array('class' =>'labels' ))}}
+    {{Form::email('email',null,array('class' => 'inputs'))}}
   </p>
 
   <p>
-    <h3 style="color:#565656">{{Form::label('hobbies', 'Záľuby:')}} </h3>
+    <h3 >{{Form::label('hobbies', 'Záľuby:')}} </h3>
 
     <em>  Ohodnoťe ako sa vám páčia dané záľuby.</em>
     @foreach ($hobbies as $key => $hobby)
@@ -45,17 +41,17 @@
         <strong>{{Form::label($key, $hobby.':')}}</strong>
       </p>
       <p>
-        <em style="color:#76323F">Najmenej</em>
+        <em >Najmenej</em>
         @for($i =1;$i<=5;$i++)
           {{Form::radio($key, $i)}}
         @endfor
-        <em style="color:#76323F">Najviac</em>
+        <em>Najviac</em>
       </p>
     @endforeach
 
   </p>
   <p >
-    {{Form::submit('Registrovať',array('style' => 'color:#565656; border-radius:25px; height:55px; padding:8px; font-weight:bold; font-size:20px; background-color:#C09F80;', 'class' => 'button'))}}
+    {{Form::submit('Registrovať',array( 'class' => 'registration-button'))}}
 
   </p>
   {{ Form::close() }}
