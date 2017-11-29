@@ -7,3 +7,126 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+$dark-red: #76323F;
+$light-brown: #C09F80;
+$border-radius: 25px;
+
+@mixin radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.page-color {
+  background-color: $dark-red;
+}
+
+.body-color{
+  background-color: $dark-red;
+}
+
+.errors {
+  color: red;
+}
+
+.content {
+  margin-left: 29%;
+  margin-top: 50px;
+  width: 650px;
+  padding-bottom: 40px;
+  text-align: center;
+  border: 2px solid $light-brown;
+  @include radius($border-radius);
+  background-color: #D7CEC7;
+}
+
+em {
+  color: $dark-red;
+}
+
+.description {
+  color: #565656;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+  @include radius($border-radius);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 70%;
+  margin-left: 15%;
+  font-size: 20px;
+}
+
+td,
+th {
+  border: 1px solid $light-brown;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+th {
+  background-color: $dark-red;
+  color: $light-brown;
+}
+
+.active {
+  background-color: #0d0d0d;
+}
+
+.labels {
+  font-weight: bold;
+}
+
+.inputs {
+  border-radius: 5px;
+}
+
+.button{
+  color: #565656;
+  @include radius($border-radius);
+  height: 35px;
+  padding: 6px;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: $light-brown;
+}
+
+.heading {
+  color: $dark-red;
+  margin-top: 50px;
+}
+
+.registration-button {
+  @extend .button;
+  height: 55px;
+  padding: 8px;
+  font-size: 20px;
+}

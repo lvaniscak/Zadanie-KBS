@@ -29,7 +29,7 @@
   </p>
 
   <p>
-    <h3 >{{Form::label('hobbies', 'Záľuby:')}} </h3>
+    <h3 class="description">{{Form::label('hobbies', 'Záľuby:')}} </h3>
 
     <em>  Ohodnoťe ako sa vám páčia dané záľuby.</em>
     @foreach ($hobbies as $key => $hobby)
