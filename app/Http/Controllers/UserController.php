@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Hobbies\Hobby;
 use App\Http\Requests\RegistrationFormRequest;
+use App\Repositories\EloquentUserRepository;
 use App\Users\User;
 use Validator;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+
+    public function __construct(EloquentUserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
   public function create()
   {
     return view('registrationForm')->with('hobbies',(new Hobby())->getTranslation());
@@ -30,6 +39,6 @@ class UserController extends Controller
 
     public function showAll()
     {
-        return view('usersList')->with('users',User::all());
+        return view('usersList')->with('users',$this->userRepository->findAll());
     }
 }
