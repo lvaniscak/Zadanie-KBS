@@ -15,5 +15,10 @@ class UsersTableSeeder extends Seeder
         factory(App\Users\User::class, 5)->create()->each(function ($user) {
             factory(App\Hobbies\Hobby::class,1)->create(['user_id' => $user->id]);
         });
+        \App\Users\User::create(array(
+            'name'    => 'admin',
+            'email' => 'admin@administration.com',
+            'password' => Hash::make('admin'),
+        ));
     }
 }

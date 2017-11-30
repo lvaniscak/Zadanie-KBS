@@ -12,7 +12,7 @@ class EloquentUserRepository implements UserRepositoryInterface
   
     public function findAll()
     {
-        return User::all();
+        return User::where('name', '!=', 'admin')->get();
     }
 
     public function findBy($att, $column)
