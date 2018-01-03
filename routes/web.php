@@ -13,6 +13,7 @@
 
 Route::get('user/create','UserController@create' );
 Route::get('admin/login','AdministrationController@showLogin' );
+Route::get('admin/logout','AdministrationController@doLogout' );
 Route::get('admin/dashboard', 'AdministrationController@showDashboard');
 
 Route::post('admin','AdministrationController@doLogin' );

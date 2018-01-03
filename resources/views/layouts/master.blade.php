@@ -21,11 +21,16 @@
 
 
   @php(Menu::make('MyNavBar', function($menu){
-
+    if(!\Illuminate\Support\Facades\Auth::check()){
     $menu->add('Úvod');
     $menu->add('Registrácia', 'user/create');
     $menu->add('Porovnanie', 'hobbies/compare');
     $menu->add('Zoznam', 'user/list');
+    }
+    else{
+    $menu->add('Dashboard', 'admin/dashboard' );
+    $menu->add('Logout', 'admin/logout');
+    }
 
   }))
 

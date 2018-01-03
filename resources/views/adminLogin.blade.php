@@ -17,13 +17,13 @@
             <div class="errors">{{$errors->first('email')}}
             </div>
             @endif
-            {{Form::label('name', 'Meno:',array('class' =>'labels' ))}}
-            {{Form::text('name',null,array('class' => 'inputs'))}}
+            {{Form::label('email', 'E-mail:',array('class' =>'labels' ))}}
+            {{Form::email('email',null,array('class' => 'inputs'))}}
             </p>
 
             <p>
             @if($errors->has('password'))
-                <div class="errors">{{$errors->first('email')}}
+                <div class="errors">{{$errors->first('password')}}
                 </div>
                 @endif
                 {{Form::label('password', 'Heslo:',array('class' =>'labels' ))}}

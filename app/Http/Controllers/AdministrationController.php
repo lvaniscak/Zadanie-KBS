@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 
+use App\Http\Requests\AdminLoginRequest;
 use App\Repositories\EloquentUserRepository;
 use App\Users\User;
 use Illuminate\Http\Request;
@@ -24,25 +25,49 @@ class AdministrationController extends Controller
     }
 
     public function showLogin()
-    {
+    {   if(!Auth::check()) {
         return view('adminLogin');
+        }
+        return redirect('admin/dashboard');
+
+
     }
 
     public function showDashboard(){
-        return view('adminDashboard')->with('users',$this->userRepository->findAll());
+        if(Auth::check()) {
+            return view('adminDashboard')->with('users', $this->userRepository->findAll());
+        }
+
+        return \redirect('admin/login');
     }
 
-    public function doLogin()
+    public function doLogin(AdminLoginRequest $request)
     {
-            $user =  $this->userRepository->findBy('name', 'admin');
+            $admin =  $this->userRepository->findBy('name', 'admin');
 
-            if($user != null && Input::get('name') == 'admin' && Hash::check(Input::get('password'), $user->password)){
-                Auth::login($user);
-                return Redirect::to('admin/dashboard');
+            $credentials = [
+              'email' => $request->email,
+                'password' => $request->password,
+            ];
+
+            if($admin != null && Input::get('email') == $admin->email ){
+                if(Auth::attempt($credentials, false)) {
+
+                    return redirect('admin/dashboard');
+                }
             }
-            else return Redirect::to('admin/login');
+
+            return redirect('admin/login')
+            ->withErrors(['email' => 'Nepodarilo sa prihlásiť. Zle prihlasovacie údaje!'])
+            ->withInput();
 
 
+    }
+
+    public function doLogout()
+    {
+        Auth::logout();
+        return redirect('admin/login');
     }
 
     public function showEditModal(Request $request)
