@@ -34,7 +34,7 @@ class AdministrationController extends Controller
 
     public function doLogin()
     {
-            $user =  User::where('name', 'admin')->first();
+            $user =  $this->userRepository->findBy('name', 'admin');
 
             if($user != null && Input::get('name') == 'admin' && Hash::check(Input::get('password'), $user->password)){
                 Auth::login($user);
@@ -47,7 +47,7 @@ class AdministrationController extends Controller
 
     public function showEditModal(Request $request)
     {
-        $user = User::where('id', $request->id)->first();
+        $user = $this->userRepository->findBy('id', $request->id);
         return view('modals.editUser')->with(['user' => $user]);
     }
 
@@ -59,7 +59,7 @@ class AdministrationController extends Controller
         ]);
 
 
-        $edit = User::findOrFail($request['id'])->update($request->all());
+        $edit = $this->userRepository->updateUser($request['id'], $request->all());
 
         return response()->json($edit);
     }

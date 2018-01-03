@@ -19,4 +19,8 @@ class EloquentUserRepository implements UserRepositoryInterface
     {
         return User::where($att, $column)->first();
     }
+
+    public function updateUser($id, $data){
+      return   User::findOrFail($id)->update($data);
+    }
 }
