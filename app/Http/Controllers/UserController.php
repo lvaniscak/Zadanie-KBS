@@ -26,13 +26,21 @@ class UserController extends Controller
 
   public function store(RegistrationFormRequest $request)
   {
-      $user = User::create(['name' => $request->name, 'email' => $request->email]);
+      $user = $this->userRepository->createUser($request->name, $request->email);
 
-     $data = $request->except(['name', 'email', '_token']);
-     $data['user_id'] = (string)$user->id;
-     Hobby::create($data);
+     $data = $request->only( (new Hobby())->getFillable());
+     if($user != null){
 
-      return view('registrationDone');
+         $data['user_id'] = (string)$user->id;
+         if(Hobby::create($data) != null){
+             return view('registrationDone');
+         }
+     }
+
+
+     return redirect('user/create')
+         ->withErrors(['email' => 'Registrácia nebola úspešná!'])
+         ->withInput();
     }
 
 

@@ -5,31 +5,51 @@ namespace App\Hobbies;
 
 
 
+use App\Exceptions\Handler;
+use App\Repositories\EloquentUserRepository;
 use App\Users\User;
+use Illuminate\Foundation\Bootstrap\HandleExceptions;
+
 
 class HobbyComparator
 {
-   public static function compare($email){
-       $expected_user = User::where('email', $email)->first();
+    protected $userRepository;
+    protected $hobbies = ['swimming','running','cycling','tourism','climbing'];
+
+    public function __construct(EloquentUserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+   public  function compare($email){
+       $expected_user = $this->userRepository->findBy('email', $email);
        if($expected_user == null) return null;
 
-       $user_hobbies = Hobby::where('user_id','=',$expected_user->id)->first();
+       $expected_hobbies = $this->userRepository->getUserHobbies($expected_user->id);
 
-       $users = User::where('id', '!=', $expected_user->id)->get();
+       $users = $this->userRepository->findAllExcept($expected_user->id);
        $list = array();
 
 
        foreach ($users as $user) {
 
-           $hobbies = $user->hobbies;
+           try {
+               $match = 0;
+               $userHobbies = $this->userRepository->getUserHobbies($user['id']);
+               if($userHobbies != null) {
+                   foreach ($this->hobbies as $value) {
 
-           $match = 0;
+                       $match = $match + abs($userHobbies->$value - $expected_hobbies->$value) * 20;
 
-           foreach ($user_hobbies->getFillable() as  $value) {
-               $match = $match + abs($hobbies->$value - $user_hobbies->$value) * 20;
+                   }
+                   $match = 100 - $match / 5;
+                   $list [$user->email] = $match;
+               }
            }
-           $match = 100 - $match/5 ;
-           $list [$user->name] = $match;
+           catch (\Exception $e){
+               abort(422, 'Problem during processing');
+
+           }
 
 
        }

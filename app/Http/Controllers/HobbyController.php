@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Hobbies\HobbyComparator;
 use App\Http\Requests\CompareFormRequest;
 
+use App\Repositories\EloquentUserRepository;
 use Validator;
 
 class HobbyController extends Controller
@@ -13,8 +14,16 @@ class HobbyController extends Controller
   {
 
 
+    try {
+        $list = (new HobbyComparator(new EloquentUserRepository()))->compare($request->email);
+        if($list instanceof \Exception){
+            throw $list;
+        }
 
-    $list = HobbyComparator::compare($request->email);
+    }
+    catch (\Exception $e){
+        return $e->getMessage();
+  }
     if($list == null)
     {
       return redirect('hobbies/compare')
