@@ -28,5 +28,3 @@ Route::post('hobbies','HobbyController@compare');
 Route::get('/',function(){
   return view('welcome');
 });
-
-Auth::routes();
