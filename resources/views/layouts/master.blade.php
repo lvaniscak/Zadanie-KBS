@@ -19,25 +19,10 @@
 </head>
 <body class="body-color">
 
-
-  @php(Menu::make('MyNavBar', function($menu){
-    if(!\Illuminate\Support\Facades\Auth::check()){
-    $menu->add('Úvod');
-    $menu->add('Registrácia', 'user/create');
-    $menu->add('Porovnanie', 'hobbies/compare');
-    $menu->add('Zoznam', 'user/list');
-    }
-    else{
-    $menu->add('Dashboard', 'admin/dashboard' );
-    $menu->add('Logout', 'admin/logout');
-    }
-
-  }))
-
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
 
-  {!! Menu::get('MyNavBar')->asUl(['class' => 'nav navbar-nav']) !!}
+  {!! Menu::get('Menu')->asUl(['class' => 'nav navbar-nav']) !!}
 
   </div>
 
