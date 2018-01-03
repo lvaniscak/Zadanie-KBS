@@ -1,9 +1,8 @@
-
 function edit(id) {
     $.ajax({
         url: "/admin/editUser",
         method: "post",
-        data: { "_token": $('meta[name="csrf-token"]').attr('content'), id: id },
+        data: {"_token": $('meta[name="csrf-token"]').attr('content'), id: id},
         success: function success(data) {
             $('#user-detail').html(data);
             $('#edit-item').modal("show");

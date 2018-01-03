@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 
-
 use App\Http\Requests\AdminLoginRequest;
 use App\Repositories\EloquentUserRepository;
-use App\Users\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
 use Validator;
 
 class AdministrationController extends Controller
@@ -25,16 +21,18 @@ class AdministrationController extends Controller
     }
 
     public function showLogin()
-    {   if(!Auth::check()) {
-        return view('adminLogin');
+    {
+        if (!Auth::check()) {
+            return view('adminLogin');
         }
         return redirect('admin/dashboard');
 
 
     }
 
-    public function showDashboard(){
-        if(Auth::check()) {
+    public function showDashboard()
+    {
+        if (Auth::check()) {
             return view('adminDashboard')->with('users', $this->userRepository->findAll());
         }
 
@@ -43,21 +41,21 @@ class AdministrationController extends Controller
 
     public function doLogin(AdminLoginRequest $request)
     {
-            $admin =  $this->userRepository->findBy('name', 'admin');
+        $admin = $this->userRepository->findBy('name', 'admin');
 
-            $credentials = [
-              'email' => $request->email,
-                'password' => $request->password,
-            ];
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
 
-            if($admin != null && Input::get('email') == $admin->email ){
-                if(Auth::attempt($credentials, false)) {
+        if ($admin != null && Input::get('email') == $admin->email) {
+            if (Auth::attempt($credentials, false)) {
 
-                    return redirect('admin/dashboard');
-                }
+                return redirect('admin/dashboard');
             }
+        }
 
-            return redirect('admin/login')
+        return redirect('admin/login')
             ->withErrors(['email' => 'Nepodarilo sa prihlásiť. Zle prihlasovacie údaje!'])
             ->withInput();
 
@@ -88,7 +86,6 @@ class AdministrationController extends Controller
 
         return response()->json($edit);
     }
-
 
 
 }

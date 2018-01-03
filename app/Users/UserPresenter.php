@@ -9,7 +9,7 @@ class UserPresenter extends Presenter
 {
     public function nameWithEmail()
     {
-        return $this->name . ' (' . $this->email.')';
+        return $this->name . ' (' . $this->email . ')';
     }
 
 

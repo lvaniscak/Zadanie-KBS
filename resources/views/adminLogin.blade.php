@@ -12,29 +12,29 @@
 
 
 
+    <p>
+    @if($errors->has('email'))
+        <div class="errors">{{$errors->first('email')}}
+        </div>
+        @endif
+        {{Form::label('email', 'E-mail:',array('class' =>'labels' ))}}
+        {{Form::email('email',null,array('class' => 'inputs'))}}
+        </p>
+
         <p>
-        @if($errors->has('email'))
-            <div class="errors">{{$errors->first('email')}}
+        @if($errors->has('password'))
+            <div class="errors">{{$errors->first('password')}}
             </div>
             @endif
-            {{Form::label('email', 'E-mail:',array('class' =>'labels' ))}}
-            {{Form::email('email',null,array('class' => 'inputs'))}}
+            {{Form::label('password', 'Heslo:',array('class' =>'labels' ))}}
+            {{Form::password('password',null,array('class' => 'inputs'))}}
             </p>
 
+
+
             <p>
-            @if($errors->has('password'))
-                <div class="errors">{{$errors->first('password')}}
-                </div>
-                @endif
-                {{Form::label('password', 'Heslo:',array('class' =>'labels' ))}}
-                {{Form::password('password',null,array('class' => 'inputs'))}}
-                </p>
+                {{Form::submit('Prihlásiť',array( 'class' => 'button'))}}
 
-
-
-                <p >
-                    {{Form::submit('Prihlásiť',array( 'class' => 'button'))}}
-
-                </p>
-                {{ Form::close() }}
+            </p>
+            {{ Form::close() }}
 @stop

@@ -3,56 +3,53 @@
 namespace App\Hobbies;
 
 
-
-
-use App\Exceptions\Handler;
 use App\Repositories\EloquentUserRepository;
-use App\Users\User;
-use Illuminate\Foundation\Bootstrap\HandleExceptions;
 
 
 class HobbyComparator
 {
     protected $userRepository;
-    protected $hobbies = ['swimming','running','cycling','tourism','climbing'];
+    protected $hobbies = ['swimming', 'running', 'cycling', 'tourism', 'climbing'];
 
     public function __construct(EloquentUserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
 
-   public  function compare($email){
-       $expected_user = $this->userRepository->findBy('email', $email);
-       if($expected_user == null) return null;
+    public function compare($email)
+    {
+        $expected_user = $this->userRepository->findBy('email', $email);
+        if ($expected_user == null) {
+            return null;
+        }
 
-       $expected_hobbies = $this->userRepository->getUserHobbies($expected_user->id);
+        $expected_hobbies = $this->userRepository->getUserHobbies($expected_user->id);
 
-       $users = $this->userRepository->findAllExcept($expected_user->id);
-       $list = array();
-
-
-       foreach ($users as $user) {
-
-           try {
-               $match = 0;
-               $userHobbies = $this->userRepository->getUserHobbies($user['id']);
-               if($userHobbies != null) {
-                   foreach ($this->hobbies as $value) {
-
-                       $match = $match + abs($userHobbies->$value - $expected_hobbies->$value) * 20;
-
-                   }
-                   $match = 100 - $match / 5;
-                   $list [$user->email] = $match;
-               }
-           }
-           catch (\Exception $e){
-               abort(422, 'Problem during processing');
-
-           }
+        $users = $this->userRepository->findAllExcept($expected_user->id);
+        $list = array();
 
 
-       }
-       return $list;
-   }
+        foreach ($users as $user) {
+
+            try {
+                $match = 0;
+                $userHobbies = $this->userRepository->getUserHobbies($user['id']);
+                if ($userHobbies != null) {
+                    foreach ($this->hobbies as $value) {
+
+                        $match = $match + abs($userHobbies->$value - $expected_hobbies->$value) * 20;
+
+                    }
+                    $match = 100 - $match / 5;
+                    $list [$user->email] = $match;
+                }
+            } catch (\Exception $e) {
+                abort(422, 'Problem during processing');
+
+            }
+
+
+        }
+        return $list;
+    }
 }

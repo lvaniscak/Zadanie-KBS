@@ -6,24 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hobby extends Model
 {
-      protected $fillable = ['user_id','swimming','running','cycling','tourism','climbing'];
-      public $timestamps = false;
+    protected $fillable = ['user_id', 'swimming', 'running', 'cycling', 'tourism', 'climbing'];
+    public $timestamps = false;
 
 
-
-      public function getTranslation()
-      {
-          $hobbies = ['swimming' => 'Plávanie',
-              'cycling' => 'Bicyklovanie',
-              'running' => 'Beh',
-              'tourism' => 'Turistika',
-              'climbing' => 'Lezenie'];
+    public function getTranslation()
+    {
+        $hobbies = [
+            'swimming' => 'Plávanie',
+            'cycling' => 'Bicyklovanie',
+            'running' => 'Beh',
+            'tourism' => 'Turistika',
+            'climbing' => 'Lezenie'
+        ];
 
         return $hobbies;
-      }
+    }
 
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(\App\Users\User::class);
     }
 }

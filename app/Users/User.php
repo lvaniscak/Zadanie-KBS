@@ -12,10 +12,9 @@ class User extends Model implements Authenticatable
     use \Illuminate\Auth\Authenticatable;
 
     protected $presenter = \App\Users\UserPresenter::class;
-  protected $fillable = ['name','email', 'password'];
-  public $timestamps = false;
-    public $remember_token=false;
-
+    protected $fillable = ['name', 'email', 'password'];
+    public $timestamps = false;
+    public $remember_token = false;
 
 
     public function hobbies()

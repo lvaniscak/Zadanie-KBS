@@ -11,7 +11,7 @@
             <th>Meno s emailom</th>
 
         </tr>
-    @foreach ($users as $user)
+        @foreach ($users as $user)
             <tr>
                 <td>{{$user->present()->nameWithEmail}}</td>
             </tr>

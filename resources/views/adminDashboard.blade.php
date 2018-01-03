@@ -4,7 +4,7 @@
 
 
 @section('content')
-
+    <script src="/js/ajaxscripts.js" type="text/javascript"></script>
     <h1 class="heading">Zoznam užívateľov</h1>
     <table>
         <tr>
@@ -15,7 +15,10 @@
         @foreach ($users as $user)
             <tr>
                 <td>{{$user->name}}</td>
-                <td><button onclick="edit({{$user->id}})" class="btn btn-warning btn-detail edit" value="{{$user->id}}">Edit</button>
+                <td>
+                    <button onclick="edit({{$user->id}})" class="btn btn-warning btn-detail edit" value="{{$user->id}}">
+                        Edit
+                    </button>
                 </td>
             </tr>
         @endforeach
@@ -27,7 +30,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
                     <h4 class="modal-title" id="myModalLabel">Edit User</h4>
                 </div>
                 <div class="modal-body" id="user-detail">
@@ -37,7 +41,6 @@
             </div>
         </div>
     </div>
-
 
 
 @stop

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,10 +12,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(App\Users\User::class, 5)->create()->each(function ($user) {
-            factory(App\Hobbies\Hobby::class,1)->create(['user_id' => $user->id]);
+            factory(App\Hobbies\Hobby::class, 1)->create(['user_id' => $user->id]);
         });
         \App\Users\User::create(array(
-            'name'    => 'admin',
+            'name' => 'admin',
             'email' => 'admin@administration.com',
             'password' => Hash::make('admin'),
         ));
