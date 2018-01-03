@@ -8,7 +8,7 @@
 @section('content')
     {{ Form::open(array('url' => 'admin')) }}
     <h1 class="heading">Admin Login</h1>
-    <em>Vyplňťe nasledujúce údaje. </em>
+    <em>Vyplňte nasledujúce údaje. </em>
 
 
 

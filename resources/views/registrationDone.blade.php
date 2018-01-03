@@ -5,6 +5,6 @@
 @section('content')
 
 
-    <p><h1>Registrácia prebehla úspešne.</h1></p>
+    <h1>Registrácia prebehla úspešne.</h1>
     <img src="/img/smile.png" align="top">
 @stop

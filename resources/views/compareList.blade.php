@@ -6,7 +6,9 @@
 @section('content')
     {{ Form::open(array('url' => 'hobbies')) }}
     <h1 class="heading">Zoznam porovnaných užívateľov</h1>
-    <p>Pre email {{$email}} sú hodnoty zhody nasledovné: </p>
+    <p>
+        Pre email {{$email}} sú hodnoty zhody nasledovné:
+    </p>
     <table>
         <tr>
             <th>Meno</th>

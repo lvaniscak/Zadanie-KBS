@@ -8,9 +8,8 @@
 @section('content')
     {{ Form::open(array('url' => 'hobbies')) }}
     <h1 class="heading">Porovnávač záľub</h1>
-    <p>
-        <em>Prosím zadajte emailovú adresu pre porovnanie </em>
-    </p>
+    <em>Prosím zadajte emailovú adresu pre porovnanie </em>
+
 
     @if($errors->has('email'))
         <div class="errors">{{$errors->first('email')}}
