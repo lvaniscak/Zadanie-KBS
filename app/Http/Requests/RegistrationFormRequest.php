@@ -11,7 +11,7 @@ class RegistrationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'bail|required|unique:users',
+            'email' => 'required|email|unique:users',
             'name' => 'required',
             'swimming' => 'required|integer|between:1,5',
             'cycling' => 'required|integer|between:1,5',

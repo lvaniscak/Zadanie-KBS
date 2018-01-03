@@ -2,14 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Users\User;
 
-class EloquentUserRepository implements UserRepositoryInterface
+class EloquentUserRepository implements Contracts\UserRepositoryInterface
 {
-    protected $user;
-
-  
     public function findAll()
     {
         return User::where('name', '!=', 'admin')->get();

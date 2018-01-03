@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Hobbies\Hobby;
 use App\Http\Requests\RegistrationFormRequest;
 use App\Repositories\EloquentUserRepository;
