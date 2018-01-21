@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/ajaxscripts.js" type="text/javascript"></script>
+    <script src="/js/adminModals.js" type="text/javascript"></script>
     <script src="/js/app.js" type="text/javascript"></script>
     <link href="/css/app.css" rel="stylesheet" type="text/css">
 </head>

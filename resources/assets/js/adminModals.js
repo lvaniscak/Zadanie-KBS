@@ -1,4 +1,4 @@
-function edit(id) {
+ function edit(id) {
     $.ajax({
         url: "/admin/editUser",
         method: "post",
@@ -10,7 +10,7 @@ function edit(id) {
     });
 }
 
-function update() {
+ function update() {
     $.ajax({
 
         url: "/admin/updateUser",

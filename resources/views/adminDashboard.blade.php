@@ -4,7 +4,6 @@
 
 
 @section('content')
-    <script src="/js/ajaxscripts.js" type="text/javascript"></script>
     <h1 class="heading">Zoznam užívateľov</h1>
     <table>
         <tr>
