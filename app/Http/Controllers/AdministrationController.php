@@ -36,29 +36,25 @@ class AdministrationController extends Controller
             return view('adminDashboard')->with('users', $this->userRepository->findAll());
         }
 
-        return \redirect('admin/login');
+        return redirect('admin/login');
     }
 
     public function doLogin(AdminLoginRequest $request)
     {
-        $admin = $this->userRepository->findBy('name', 'admin');
-
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
 
-        if ($admin != null && Input::get('email') == $admin->email) {
-            if (Auth::attempt($credentials, false)) {
 
-                return redirect('admin/dashboard');
-            }
+        if ($this->userRepository->isAdmin($request->email)&&Auth::attempt($credentials, false)) {
+
+            return redirect('admin/dashboard');
         }
 
         return redirect('admin/login')
             ->withErrors(['email' => 'Nepodarilo sa prihlásiť. Zle prihlasovacie údaje!'])
             ->withInput();
-
 
     }
 

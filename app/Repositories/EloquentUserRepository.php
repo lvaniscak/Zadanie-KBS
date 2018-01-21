@@ -28,11 +28,20 @@ class EloquentUserRepository
 
     public function createUser($name, $email)
     {
-        return User::create(['name' => $name, 'email' => $email]);
+        return User::create(['name' => $name, 'email' => $email, 'role' => 'user']);
     }
 
     public function getUserHobbies($id)
     {
         return User::where('id', $id)->first()->hobbies;
+    }
+
+    public function isAdmin($email){
+        $user =  User::where('email',$email)->first();
+        if($user){
+            return $user->role == 'admin';
+        }
+
+        return false;
     }
 }
