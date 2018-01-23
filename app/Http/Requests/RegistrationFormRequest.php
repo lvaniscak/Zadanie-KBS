@@ -1,9 +1,6 @@
 <?php namespace App\Http\Requests;
 
-use App\Hobbies\Hobby;
-use App\Users\User;
 use Illuminate\Foundation\Http\FormRequest;
-
 
 
 class RegistrationFormRequest extends FormRequest
@@ -18,7 +15,7 @@ class RegistrationFormRequest extends FormRequest
             'running' => 'required|integer|between:1,5',
             'tourism' => 'required|integer|between:1,5',
             'climbing' => 'required|integer|between:1,5',
-            ];
+        ];
     }
 
     public function messages()

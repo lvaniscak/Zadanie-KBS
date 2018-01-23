@@ -7,7 +7,6 @@ use App\Http\Requests\AdminLoginRequest;
 use App\Repositories\EloquentUserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 use Validator;
 
 class AdministrationController extends Controller
@@ -47,7 +46,7 @@ class AdministrationController extends Controller
         ];
 
 
-        if ($this->userRepository->isAdmin($request->email)&&Auth::attempt($credentials, false)) {
+        if ($this->userRepository->isAdmin($request->email) && Auth::attempt($credentials, false)) {
 
             return redirect('admin/dashboard');
         }
@@ -74,7 +73,7 @@ class AdministrationController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email'=> 'required|email'
+            'email' => 'required|email'
 
         ]);
 

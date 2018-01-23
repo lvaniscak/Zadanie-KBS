@@ -4,6 +4,8 @@ namespace App\Hobbies;
 
 
 use App\Repositories\EloquentUserRepository;
+use InvalidArgumentException;
+use LogicException;
 
 
 class HobbyComparator
@@ -19,13 +21,17 @@ class HobbyComparator
     public function compare($email)
     {
         $expected_user = $this->userRepository->findBy('email', $email);
-        if ($expected_user == null) {
-            return null;
+        if (!$expected_user) {
+            throw new InvalidArgumentException("Email missing");
         }
 
         $expected_hobbies = $this->userRepository->getUserHobbies($expected_user->id);
 
         $users = $this->userRepository->findAllExcept($expected_user->id);
+
+        if (!$users) {
+            throw new LogicException("No users to compare");
+        }
         $list = array();
 
 
@@ -50,6 +56,7 @@ class HobbyComparator
 
 
         }
+
         return $list;
     }
 }

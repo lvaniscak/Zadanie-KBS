@@ -1,9 +1,6 @@
 <?php namespace App\Http\Requests;
 
-use App\Hobbies\Hobby;
-use App\Users\User;
 use Illuminate\Foundation\Http\FormRequest;
-
 
 
 class AdminLoginRequest extends FormRequest

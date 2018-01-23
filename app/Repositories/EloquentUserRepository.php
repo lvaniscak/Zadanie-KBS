@@ -36,9 +36,10 @@ class EloquentUserRepository
         return User::where('id', $id)->first()->hobbies;
     }
 
-    public function isAdmin($email){
-        $user =  User::where('email',$email)->first();
-        if($user){
+    public function isAdmin($email)
+    {
+        $user = User::where('email', $email)->first();
+        if ($user) {
             return $user->role == 'admin';
         }
 

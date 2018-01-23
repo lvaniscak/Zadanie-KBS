@@ -6,7 +6,8 @@ use App\Hobbies\HobbyComparator;
 use App\Http\Requests\CompareFormRequest;
 use App\Repositories\EloquentUserRepository;
 use Illuminate\Support\Facades\Log;
-use Psr\Log\InvalidArgumentException;
+use InvalidArgumentException;
+use LogicException;
 use Validator;
 
 class HobbyController extends Controller
@@ -21,31 +22,29 @@ class HobbyController extends Controller
     public function compare(CompareFormRequest $request)
     {
 
-
         try {
-            if(!$request->email){
-                throw new InvalidArgumentException("Email missing");
-            }
             $list = (new HobbyComparator($this->userRepository))->compare($request->email);
 
-        } catch (\Exception $e) {
+        } catch (InvalidArgumentException $e) {
             Log::error($e->getMessage());
-            return redirect('hobbies/compare')
-                ->withErrors(['email' => 'Nastal problem počas spracovania.'])
-                ->withInput();
+            return $this->redirectWithError('Takýto email nie je registrovaný!');
+        } catch (LogicException $e) {
+            Log::error($e->getMessage());
+            return $this->redirectWithError('Nexistujú používatelia pre porovnanie');
         }
-        if ($list == null) {
-            return redirect('hobbies/compare')
-                ->withErrors(['email' => 'Takýto email nie je registrovaný!'])
-                ->withInput();
-        }
-
 
         return view('compareList')->with(array(
             'list' => $list,
             'email' => $request->email
         ));
 
+    }
+
+    public function redirectWithError($errorMessage)
+    {
+        return redirect('hobbies/compare')
+            ->withErrors(['email' => $errorMessage])
+            ->withInput();
     }
 
     public function index()

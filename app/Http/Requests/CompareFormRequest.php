@@ -3,7 +3,6 @@
 use Illuminate\Foundation\Http\FormRequest;
 
 
-
 class CompareFormRequest extends FormRequest
 {
     public function rules()

@@ -13,7 +13,7 @@ class User extends Model implements Authenticatable
     use \Illuminate\Auth\Authenticatable;
 
     protected $presenter = UserPresenter::class;
-    protected $fillable = ['name', 'email', 'password', 'role'];
+    protected $fillable = ['name', 'email'];
     public $timestamps = false;
     public $remember_token = false;
 
